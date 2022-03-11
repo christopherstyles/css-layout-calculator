@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CSS Layout Calculator",
+  "name": "A helper to calculate positions when styling a layout",
   "icons": [
     {
       "src": "favicon.ico",
