@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { ClipboardCopyIcon } from "@heroicons/react/outline";
+
 import "./App.css";
 
 function App() {
@@ -104,23 +106,10 @@ function App() {
                 type="button"
                 onClick={() => copyToClipboard(`${result}vw`)}
               >
-                <div className="">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
-                    />
-                  </svg>
-                </div>
                 <div>Copy to clipboard</div>
+                <div className="">
+                  <ClipboardCopyIcon className="h-5 w-5" />
+                </div>
               </button>
               <div className="select-all">{result}vw</div>
               <div className="rounded-3xl overflow-hidden text-xl bg-slate-50">
@@ -128,24 +117,22 @@ function App() {
                   Tailwind Helpers
                 </div>
                 <ul className="px-10 py-6">
-                  <li>
-                    <code className="select-all">w-[{result}vw]</code>
-                  </li>
-                  <li>
-                    <code className="select-all">t-[{result}vw]</code>
-                  </li>
-                  <li>
-                    <code className="select-all">r-[{result}vw]</code>
-                  </li>
-                  <li>
-                    <code className="select-all">b-[{result}vw]</code>
-                  </li>
-                  <li>
-                    <code className="select-all">l-[{result}vw]</code>
-                  </li>
-                  <li>
-                    <code className="select-all">l-[{result}vw]</code>
-                  </li>
+                  {["w", "t", "r", "b", "l"].map((attribute) => (
+                    <li key={`attribute_${attribute}`}>
+                      <button
+                        className="flex space-x-2 items-center hover:bg-slate-200 rounded-full px-2 py-1"
+                        type="button"
+                        onClick={() =>
+                          copyToClipboard(`${attribute}-[${result}vw]`)
+                        }
+                      >
+                        <code className="select-all">
+                          {attribute}-[{result}vw]
+                        </code>
+                        <ClipboardCopyIcon className="h-6 w-6" />
+                      </button>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
