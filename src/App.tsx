@@ -67,6 +67,9 @@ function App() {
               <div className="rounded-3xl text-xl bg-slate-50 p-10">
                 <ul>
                   <li>
+                    <code className="select-all">w-[{result}vw]</code>
+                  </li>
+                  <li>
                     <code className="select-all">t-[{result}vw]</code>
                   </li>
                   <li>
@@ -80,9 +83,6 @@ function App() {
                   </li>
                   <li>
                     <code className="select-all">l-[{result}vw]</code>
-                  </li>
-                  <li>
-                    <code className="select-all">w-[{result}vw]</code>
                   </li>
                 </ul>
               </div>
