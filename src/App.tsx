@@ -119,22 +119,24 @@ function App() {
                   Tailwind Helpers
                 </div>
                 <ul className="px-10 py-6">
-                  {["w", "t", "r", "b", "l"].map((attribute) => (
-                    <li key={`attribute_${attribute}`}>
-                      <button
-                        className="flex space-x-2 items-center hover:bg-slate-200 rounded-full px-2 py-1"
-                        type="button"
-                        onClick={() =>
-                          copyToClipboard(`${attribute}-[${result}vw]`)
-                        }
-                      >
-                        <code className="select-all">
-                          {attribute}-[{result}vw]
-                        </code>
-                        <ClipboardCopyIcon className="h-6 w-6" />
-                      </button>
-                    </li>
-                  ))}
+                  {["w", "h", "top", "right", "bottom", "left"].map(
+                    (attribute) => (
+                      <li key={`attribute_${attribute}`}>
+                        <button
+                          className="flex space-x-2 items-center hover:bg-slate-200 rounded-full px-2 py-1"
+                          type="button"
+                          onClick={() =>
+                            copyToClipboard(`${attribute}-[${result}vw]`)
+                          }
+                        >
+                          <code className="select-all">
+                            {attribute}-[{result}vw]
+                          </code>
+                          <ClipboardCopyIcon className="h-6 w-6" />
+                        </button>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             </div>
