@@ -17,6 +17,31 @@ function App() {
     }
   }, [containerWidth, elementWidth, roundTo]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(document.location.search.substring(1));
+
+    const containerWidthFromParams = params.has("container-width")
+      ? params.get("container-width")
+      : null;
+    if (containerWidthFromParams) {
+      setContainerWidth(Number(containerWidthFromParams));
+    }
+
+    const roundToFromParams = params.has("round-to")
+      ? params.get("round-to")
+      : null;
+    if (roundToFromParams) {
+      setRoundTo(Number(roundToFromParams));
+    }
+
+    const elementWidthFromParams = params.has("element-width")
+      ? params.get("element-width")
+      : null;
+    if (elementWidthFromParams) {
+      setElementWidth(Number(elementWidthFromParams));
+    }
+  }, []);
+
   const copyToClipboard = (contents: string | number) => {
     const str = String(contents);
     navigator.clipboard
