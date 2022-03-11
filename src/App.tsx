@@ -63,7 +63,7 @@ function App() {
         <div className="items-center justify-center flex text-8xl">
           {result > 0 ? (
             <div className="space-y-6 flex flex-col items-center">
-              <div className="select-all">{result}</div>
+              <div className="select-all">{result}vw</div>
               <div className="rounded-3xl text-xl bg-slate-50 p-10">
                 <ul>
                   <li>
