@@ -17,6 +17,18 @@ function App() {
     }
   }, [containerWidth, elementWidth, roundTo]);
 
+  const copyToClipboard = (contents: string | number) => {
+    const str = String(contents);
+    navigator.clipboard
+      .writeText(str)
+      .then(() => {
+        console.log(`"${str}" was copied to clipboard.`);
+      })
+      .catch((err) => {
+        console.error(`Error copying text to clipboard: ${err}`);
+      });
+  };
+
   return (
     <main className="bg-slate-400 text-slate-800 min-h-screen flex items-center justify-center">
       <div className="space-y-10">
@@ -30,8 +42,9 @@ function App() {
                 setContainerWidth(Number(event.target.value))
               }
               value={containerWidth}
-              tabIndex={1}
-              autoFocus={true}
+              tabIndex={0}
+              autoFocus
+              onFocus={(event) => event.target.select()}
             />
           </div>
           <div>
@@ -41,7 +54,6 @@ function App() {
               className="px-4 py-2 text-2xl rounded-md"
               onChange={(event) => setRoundTo(Number(event.target.value))}
               value={roundTo}
-              tabIndex={2}
               size={4}
             />
           </div>
@@ -55,7 +67,6 @@ function App() {
                   setElementWidth(Number(event.target.value))
                 }
                 value={elementWidth}
-                tabIndex={3}
               />
             </div>
           </div>
@@ -63,6 +74,13 @@ function App() {
         <div className="items-center justify-center flex text-8xl">
           {result > 0 ? (
             <div className="space-y-6 flex flex-col items-center">
+              <button
+                className="text-lg px-6 py-2 bg-slate-300 border-slate-200 rounded-full hover:scale-105 active:scale-100 transition duration-150"
+                type="button"
+                onClick={() => copyToClipboard(`${result}vw`)}
+              >
+                Copy to clipboard
+              </button>
               <div className="select-all">{result}vw</div>
               <div className="rounded-3xl text-xl bg-slate-50 p-10">
                 <ul>
