@@ -81,6 +81,8 @@ function App() {
               className="px-4 py-2 text-2xl rounded-md"
               onChange={(event) => setRoundTo(Number(event.target.value))}
               value={roundTo}
+              min={0}
+              max={3}
               size={4}
             />
           </div>
