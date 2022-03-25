@@ -8,6 +8,7 @@ function App() {
   const [roundTo, setRoundTo] = useState<number>(2);
   const [elementWidth, setElementWidth] = useState<number>(0);
   const [result, setResult] = useState<number>(0);
+  const [prefix, setPrefix] = useState("");
 
   useEffect(() => {
     if (containerWidth > 0 && elementWidth > 0) {
@@ -34,6 +35,13 @@ function App() {
       : null;
     if (roundToFromParams) {
       setRoundTo(Number(roundToFromParams));
+    }
+
+    const prefixToFromParams = params.has("prefix")
+      ? params.get("prefix")
+      : null;
+    if (prefixToFromParams) {
+      setPrefix(prefixToFromParams);
     }
 
     const elementWidthFromParams = params.has("element-width")
@@ -99,6 +107,18 @@ function App() {
               />
             </div>
           </div>
+          <div>
+            <div>Prefix (“md:", "lg:", etc)</div>
+            <input
+              type="text"
+              className="px-4 py-2 text-2xl rounded-md"
+              onChange={(event) => setPrefix(event.target.value)}
+              value={prefix}
+              min={0}
+              max={25}
+              size={4}
+            />
+          </div>
         </div>
         <div className="items-center justify-center flex text-8xl">
           {result > 0 ? (
@@ -126,10 +146,13 @@ function App() {
                           className="flex space-x-2 items-center hover:bg-slate-200 rounded-full px-2 py-1"
                           type="button"
                           onClick={() =>
-                            copyToClipboard(`${attribute}-[${result}vw]`)
+                            copyToClipboard(
+                              `${prefix}${attribute}-[${result}vw]`,
+                            )
                           }
                         >
                           <code className="select-all">
+                            {prefix}
                             {attribute}-[{result}vw]
                           </code>
                           <ClipboardCopyIcon className="h-6 w-6" />
