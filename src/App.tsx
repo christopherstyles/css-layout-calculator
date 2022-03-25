@@ -95,6 +95,18 @@ function App() {
             />
           </div>
           <div>
+            <div>Prefix (“md:", "lg:", etc)</div>
+            <input
+              type="text"
+              className="px-4 py-2 text-2xl rounded-md"
+              onChange={(event) => setPrefix(event.target.value)}
+              value={prefix}
+              min={0}
+              max={25}
+              size={4}
+            />
+          </div>
+          <div>
             <div>Element Width:</div>
             <div>
               <input
@@ -106,18 +118,6 @@ function App() {
                 value={elementWidth}
               />
             </div>
-          </div>
-          <div>
-            <div>Prefix (“md:", "lg:", etc)</div>
-            <input
-              type="text"
-              className="px-4 py-2 text-2xl rounded-md"
-              onChange={(event) => setPrefix(event.target.value)}
-              value={prefix}
-              min={0}
-              max={25}
-              size={4}
-            />
           </div>
         </div>
         <div className="items-center justify-center flex text-8xl">
